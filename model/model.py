@@ -5,7 +5,7 @@ x = tf.placeholder(tf.float32)
 y = tf.placeholder(tf.float32)
 
 three = tf.Variable(3, dtype=tf.float32)
-z = tf.scalar_mul(three, x) + y
+z = tf.add(3 * x, y, name='z')
 
 model_version = 1
 export_path_base = "three_x_plus_y"

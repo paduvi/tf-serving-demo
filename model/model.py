@@ -8,7 +8,7 @@ three = tf.Variable(3, dtype=tf.float32)
 z = tf.scalar_mul(three, x) + y
 
 model_version = 1
-export_path_base = "three_x_plus_y"
+export_path_base = "/tmp/three_x_plus_y"
 export_path = os.path.join(
     tf.compat.as_bytes(export_path_base),
     tf.compat.as_bytes(str(model_version)))

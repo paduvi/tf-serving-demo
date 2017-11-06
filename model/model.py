@@ -1,8 +1,8 @@
 import tensorflow as tf
 import os
 
-x = tf.placeholder(tf.float32, shape=None)
-y = tf.placeholder(tf.float32, shape=None)
+x = tf.placeholder(tf.float32)
+y = tf.placeholder(tf.float32)
 
 three = tf.Variable(3, dtype=tf.float32)
 z = tf.scalar_mul(three, x) + y
@@ -24,7 +24,8 @@ with tf.Session() as sess:
         [tf.saved_model.tag_constants.SERVING],
         signature_def_map={
             "magic_model": tf.saved_model.signature_def_utils.predict_signature_def(
-                inputs={"egg": x, "bacon": y},
-                outputs={"spam": z})
+                inputs={"egg": tf.saved_model.utils.build_tensor_info(x),
+                        "bacon": tf.saved_model.utils.build_tensor_info(y)},
+                outputs={"spam": tf.saved_model.utils.build_tensor_info(z)})
         })
     builder.save()

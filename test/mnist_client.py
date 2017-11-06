@@ -29,7 +29,7 @@ import threading
 
 # This is a placeholder for a Google-internal import.
 
-from grpc.beta import implementations
+from grpc import insecure_channel
 import numpy
 import tensorflow as tf
 
@@ -129,7 +129,7 @@ def do_inference(hostport, work_dir, concurrency, num_tests):
   """
   test_data_set = mnist_input_data.read_data_sets(work_dir).test
   host, port = hostport.split(':')
-  channel = implementations.insecure_channel(host, int(port))
+  channel = insecure_channel(host, int(port))
   stub = prediction_service_pb2.beta_create_PredictionService_stub(channel)
   result_counter = _ResultCounter(num_tests, concurrency)
   for _ in range(num_tests):

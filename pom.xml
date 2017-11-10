@@ -52,7 +52,7 @@
 						io.grpc:protoc-gen-grpc-java:${grpc.version}:exe:${os.detected.classifier}
 					</pluginArtifact>
 					<protoSourceRoot>
-						${basedir}/src/main/resources/proto
+						${basedir}/proto
 					</protoSourceRoot>
 				</configuration>
 				<executions>
